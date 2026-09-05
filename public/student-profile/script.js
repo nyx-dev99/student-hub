@@ -88,6 +88,7 @@
 
   function renderAttendance(data) {
     $("sp-overall").textContent = data.overall + "%";
+    $("sp-overall-stat").textContent = data.overall + "%";
     $("sp-attended").textContent = data.attended;
     $("sp-missed").textContent = data.missed;
     $("sp-total").textContent = data.total;
