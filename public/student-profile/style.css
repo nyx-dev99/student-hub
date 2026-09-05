@@ -36,7 +36,8 @@ body { margin: 0; background: #f6f7fb; }
 .sp-subtitle { margin: 6px 0 0; color: var(--muted-color); font-size: 15px; }
 
 .sp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.sp-profile, .sp-subjects { grid-column: span 2; }
+.sp-profile, .sp-subjects, .sp-attendance, .sp-preview { grid-column: span 2; }
+
 
 .sp-card {
   background: var(--card-color);
