@@ -1,24 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Student Profile — Attendance Overview" },
+      {
+        name: "description",
+        content:
+          "Student profile page with editable details, attendance summary, subject-wise attendance and email notification settings.",
+      },
+      { property: "og:title", content: "Student Profile — Attendance Overview" },
+      {
+        property: "og:description",
+        content:
+          "Student profile page with editable details, attendance summary, subject-wise attendance and email notification settings.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+// The module itself is plain HTML/CSS/JS in public/student-profile/.
+// This route simply displays it so it can be previewed and handed over as-is.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <iframe
+      src="/student-profile/index.html"
+      title="Student Profile"
+      style={{ border: "none", width: "100%", height: "100vh", display: "block" }}
+    />
   );
 }
