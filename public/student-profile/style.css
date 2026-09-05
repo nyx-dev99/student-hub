@@ -115,9 +115,15 @@ body { margin: 0; background: #f6f7fb; }
 
 /* Activity */
 .sp-activity-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.sp-activity-list li { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 10px; }
+.sp-activity-list li { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 12px 14px; border: 1px solid var(--border-color); border-left: 3px solid var(--border-color); border-radius: 10px; background: var(--card-color); }
+.sp-activity-list li.sp-activity-present { border-left-color: var(--success-color); }
+.sp-activity-list li.sp-activity-missed { border-left-color: var(--danger-color); }
+.sp-activity-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .sp-activity-name { font-weight: 600; display: block; }
 .sp-activity-time { color: var(--muted-color); font-size: 13px; }
+.sp-activity-status { font-size: 12px; font-weight: 650; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.sp-activity-status.present { background: rgba(23,144,79,.12); color: var(--success-color); }
+.sp-activity-status.missed { background: rgba(198,47,56,.12); color: var(--danger-color); }
 
 /* Notifications */
 .sp-notify-row { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
