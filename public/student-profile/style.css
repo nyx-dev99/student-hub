@@ -76,6 +76,10 @@ body { margin: 0; background: #f6f7fb; }
 .sp-btn-ghost { background: var(--card-color); color: var(--text-color); border-color: var(--border-color); }
 .sp-btn-ghost:hover { background: var(--secondary-color); }
 .sp-btn:focus-visible, .sp-module input:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; }
+#sp-unsubscribe { display: inline-flex; align-items: center; gap: 8px; text-decoration: underline; text-underline-offset: 3px; }
+#sp-unsubscribe::before { content: "✕"; font-size: 14px; }
+#sp-unsubscribe:hover { color: var(--danger-color); border-color: var(--danger-color); background: rgba(198,47,56,.06); }
+#sp-unsubscribe:disabled { opacity: .55; pointer-events: none; text-decoration: none; }
 
 /* Attendance summary */
 .sp-attendance-body { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
