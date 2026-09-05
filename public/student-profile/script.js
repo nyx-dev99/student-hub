@@ -88,6 +88,7 @@
 
   function renderAttendance(data) {
     $("sp-overall").textContent = data.overall + "%";
+    $("sp-overall-stat").textContent = data.overall + "%";
     $("sp-attended").textContent = data.attended;
     $("sp-missed").textContent = data.missed;
     $("sp-total").textContent = data.total;
@@ -147,23 +148,27 @@
     const list = $("sp-activity-list");
     list.innerHTML = "";
     items.forEach(function (a) {
+      const isPresent = a.status === "Present";
       const li = document.createElement("li");
-      const left = document.createElement("div");
+      li.className = isPresent ? "sp-activity-present" : "sp-activity-missed";
+
+      const main = document.createElement("div");
+      main.className = "sp-activity-main";
       const title = document.createElement("span");
       title.className = "sp-activity-name";
       title.textContent = a.title;
       const when = document.createElement("span");
       when.className = "sp-activity-time";
       when.textContent = a.when;
-      left.appendChild(title);
-      left.appendChild(when);
+      main.appendChild(title);
+      main.appendChild(when);
 
-      const tag = document.createElement("span");
-      tag.className = "sp-tag " + (a.status === "Present" ? "sp-tag-good" : "sp-tag-low");
-      tag.textContent = a.status;
+      const status = document.createElement("span");
+      status.className = "sp-activity-status " + (isPresent ? "present" : "missed");
+      status.textContent = a.status;
 
-      li.appendChild(left);
-      li.appendChild(tag);
+      li.appendChild(main);
+      li.appendChild(status);
       list.appendChild(li);
     });
   }
