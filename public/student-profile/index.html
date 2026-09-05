@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Student Profile</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<main class="sp-module">
+  <header class="sp-header">
+    <h1 class="sp-title">Student Profile</h1>
+    <p class="sp-subtitle">Personal details, attendance overview and notification preferences.</p>
+  </header>
+
+  <div class="sp-grid">
+    <!-- PROFILE -->
+    <section class="sp-card sp-profile" aria-labelledby="sp-profile-h">
+      <h2 class="sp-card-title" id="sp-profile-h">Profile</h2>
+      <div class="sp-profile-body">
+        <div class="sp-avatar" id="sp-avatar" aria-hidden="true">ND</div>
+        <div class="sp-profile-info">
+          <p class="sp-name" id="sp-name">—</p>
+          <p class="sp-course" id="sp-course">—</p>
+          <dl class="sp-details">
+            <div class="sp-detail"><dt>Roll Number</dt><dd id="sp-roll">—</dd></div>
+            <div class="sp-detail"><dt>Mobile</dt><dd id="sp-mobile">—</dd></div>
+            <div class="sp-detail sp-detail-wide"><dt>Email</dt><dd id="sp-email">—</dd></div>
+          </dl>
+          <button class="sp-btn sp-btn-primary" id="sp-edit-btn" type="button">Edit Profile</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATTENDANCE SUMMARY -->
+    <section class="sp-card sp-attendance" aria-labelledby="sp-att-h">
+      <h2 class="sp-card-title" id="sp-att-h">Attendance Summary</h2>
+      <div class="sp-attendance-body">
+        <div class="sp-ring" id="sp-ring" role="img" aria-label="Overall attendance">
+          <div class="sp-ring-inner">
+            <span class="sp-ring-value" id="sp-overall">0%</span>
+            <span class="sp-ring-label">Overall</span>
+          </div>
+        </div>
+        <ul class="sp-stats">
+          <li><span class="sp-stat-value" id="sp-attended">0</span><span class="sp-stat-label">Attended</span></li>
+          <li><span class="sp-stat-value sp-danger" id="sp-missed">0</span><span class="sp-stat-label">Missed</span></li>
+          <li><span class="sp-stat-value" id="sp-total">0</span><span class="sp-stat-label">Total classes</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SUBJECT-WISE -->
+    <section class="sp-card sp-subjects" aria-labelledby="sp-sub-h">
+      <h2 class="sp-card-title" id="sp-sub-h">Subject-wise Attendance</h2>
+      <ul class="sp-subject-list" id="sp-subject-list"></ul>
+    </section>
+
+    <!-- RECENT ACTIVITY -->
+    <section class="sp-card sp-activity" aria-labelledby="sp-act-h">
+      <h2 class="sp-card-title" id="sp-act-h">Recent Activity</h2>
+      <ul class="sp-activity-list" id="sp-activity-list"></ul>
+    </section>
+
+    <!-- NOTIFICATIONS -->
+    <section class="sp-card sp-notifications" aria-labelledby="sp-not-h">
+      <h2 class="sp-card-title" id="sp-not-h">Notification Settings</h2>
+      <div class="sp-notify-row">
+        <div>
+          <p class="sp-notify-name">Email Notifications</p>
+          <p class="sp-notify-desc">Receive an email when you miss a class or test.</p>
+        </div>
+        <label class="sp-switch">
+          <input type="checkbox" id="sp-notify-toggle" />
+          <span class="sp-slider" aria-hidden="true"></span>
+          <span class="sp-sr">Toggle email notifications</span>
+        </label>
+      </div>
+      <p class="sp-status" id="sp-notify-status" role="status"></p>
+      <button class="sp-btn sp-btn-ghost" id="sp-unsubscribe" type="button">Unsubscribe from emails</button>
+      <p class="sp-note">Unsubscribing only turns off emails. Your profile and attendance records stay intact.</p>
+    </section>
+
+    <!-- PREVIEW -->
+    <section class="sp-card sp-preview" aria-labelledby="sp-prev-h">
+      <h2 class="sp-card-title" id="sp-prev-h">Notification Preview</h2>
+      <p class="sp-note">Visual example only — no email is sent from this prototype.</p>
+      <article class="sp-mail">
+        <p class="sp-mail-badge">Missed Class Alert</p>
+        <p class="sp-mail-line"><span>Subject:</span> Attendance Alert: Class Missed</p>
+        <p class="sp-mail-line"><span>Message:</span> <span id="sp-mail-msg"></span></p>
+      </article>
+    </section>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div class="sp-modal" id="sp-modal" role="dialog" aria-modal="true" aria-labelledby="sp-modal-h" hidden>
+    <div class="sp-modal-backdrop" data-sp-close></div>
+    <div class="sp-modal-card">
+      <h2 class="sp-card-title" id="sp-modal-h">Edit Profile</h2>
+      <form id="sp-form" novalidate>
+        <div class="sp-field">
+          <label for="sp-in-name">Name</label>
+          <input id="sp-in-name" name="name" type="text" autocomplete="name" />
+          <small class="sp-error" data-error-for="name"></small>
+        </div>
+        <div class="sp-field">
+          <label for="sp-in-course">Course</label>
+          <input id="sp-in-course" name="course" type="text" />
+          <small class="sp-error" data-error-for="course"></small>
+        </div>
+        <div class="sp-field">
+          <label for="sp-in-roll">Roll Number</label>
+          <input id="sp-in-roll" name="roll" type="text" />
+          <small class="sp-error" data-error-for="roll"></small>
+        </div>
+        <div class="sp-field">
+          <label for="sp-in-mobile">Mobile Number</label>
+          <input id="sp-in-mobile" name="mobile" type="tel" />
+          <small class="sp-error" data-error-for="mobile"></small>
+        </div>
+        <div class="sp-field">
+          <label for="sp-in-email">Email ID</label>
+          <input id="sp-in-email" name="email" type="email" />
+          <small class="sp-error" data-error-for="email"></small>
+        </div>
+        <div class="sp-modal-actions">
+          <button type="button" class="sp-btn sp-btn-ghost" id="sp-cancel">Cancel</button>
+          <button type="submit" class="sp-btn sp-btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="sp-toast" id="sp-toast" role="status" aria-live="polite" hidden></div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
